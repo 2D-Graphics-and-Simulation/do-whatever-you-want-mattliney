@@ -102,7 +102,7 @@ function onLoad() {
         originMatrix = Matrix.createTranslation(origin);
         rootNode = initialiseSceneGraph(originMatrix);
         visitor = new RenderVisitor(mainContext);
-        generateMen(50);
+        generateMen(10);
 
         debug = false;
         circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
@@ -183,12 +183,13 @@ function onLoad() {
     }
 
     function checkCollision() {
-        var distX, distY, distance, daNewVecta;
+        var distX, distY, distance, distanceVector;
 
         for(i = 0; i < men.length; i += 1) {
             distX = men[i].getPosition().getX() - user.getPosition().getX();
             distY = men[i].getPosition().getY() - user.getPosition().getY();
-            distance = Math.sqrt((distX * distX) + (distY * distY));
+            distance = new Vector(distX,distY,1);
+            distance = distance.magnitude();
     
             if(distance <= user.getCollision().checkCollision(men[i].getCollision())) {
                 if(men[i].getColour() != user.getColour())
@@ -201,13 +202,25 @@ function onLoad() {
 
         distX = circle.getPosition().getX() - circle2.getPosition().getX();
         distY = circle.getPosition().getY() - circle2.getPosition().getY();
-        daNewVecta = new Vector(distX,distY,1);
-        distance = Math.sqrt((distX * distX) + (distY * distY));
+        distanceVector = new Vector(distX,distY,1);
+        distance = distanceVector.magnitude();
 
         if(distance <= circle.getCollision().checkCollision(circle2.getCollision())) {
-            circle.setVelocity(new Vector(-circle.getVelocity().getX(), -circle.getVelocity().getY(), 1));
-            circle2.setVelocity(new Vector(-circle2.getVelocity().getX(), -circle2.getVelocity().getY(), 1));
+            circle.setVelocity(new Vector(distanceVector.getX(), distanceVector.getY(), 1));
+            circle2.setVelocity(new Vector(-distanceVector.getX(), -distanceVector.getY(), 1));
         }
+    }
+
+    function drawDistanceVector() {
+        secondContext.beginPath();
+        secondContext.fillStyle = "#ffffff";
+        secondContext.lineWidth = 5;
+        secondContext.lineJoin = 'round';
+
+        secondContext.moveTo(circle.getPosition().getX(), circle.getPosition().getY());
+        secondContext.lineTo(circle2.getPosition().getX(), circle2.getPosition().getY());
+
+        secondContext.stroke();
     }
 
     function animationLoop() {
@@ -231,6 +244,7 @@ function onLoad() {
         
         circle.draw(secondContext);
         circle2.draw(secondContext);
+        drawDistanceVector();
         line1.draw(secondContext);
         
         mainContext.fillStyle = "#000000";
