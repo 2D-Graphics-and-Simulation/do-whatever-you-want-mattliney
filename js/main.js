@@ -1,7 +1,7 @@
 function onLoad() {
     var mainCanvas, mainContext, origin, originMatrix, manPosition, men, i, negative, 
     rootNode, manAngle, thisTime, lastTime, deltaTime, user, string, background, mouseX, mouseY, visitor,
-    debug, circle, infectedCount, secondCanvas, secondContext, circle2;
+    debug, circle, infectedCount, secondCanvas, secondContext, circle2, line1;
     function initialiseCanvasContext() {
         mainCanvas = document.getElementById('mainCanvas');
         secondCanvas = document.getElementById('secondCanvas');
@@ -102,11 +102,12 @@ function onLoad() {
         originMatrix = Matrix.createTranslation(origin);
         rootNode = initialiseSceneGraph(originMatrix);
         visitor = new RenderVisitor(mainContext);
-        generateMen(5);
+        generateMen(50);
 
         debug = false;
-        circle = new bouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
-        circle2 = new bouncyBall(new Vector(200,150,1), 100, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        circle2 = new BouncyBall(new Vector(-200,150,1), 100, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        line1 = new Line(secondCanvas.width/5,secondCanvas.height/2,secondCanvas.width/2,secondCanvas.height/5);
         lastTime = Date.now()
     }
 
@@ -182,7 +183,7 @@ function onLoad() {
     }
 
     function checkCollision() {
-        var distX, distY, distance;
+        var distX, distY, distance, daNewVecta;
 
         for(i = 0; i < men.length; i += 1) {
             distX = men[i].getPosition().getX() - user.getPosition().getX();
@@ -200,6 +201,7 @@ function onLoad() {
 
         distX = circle.getPosition().getX() - circle2.getPosition().getX();
         distY = circle.getPosition().getY() - circle2.getPosition().getY();
+        daNewVecta = new Vector(distX,distY,1);
         distance = Math.sqrt((distX * distX) + (distY * distY));
 
         if(distance <= circle.getCollision().checkCollision(circle2.getCollision())) {
@@ -229,6 +231,7 @@ function onLoad() {
         
         circle.draw(secondContext);
         circle2.draw(secondContext);
+        line1.draw(secondContext);
         
         mainContext.fillStyle = "#000000";
         mainContext.font = "20pt Helvetica";

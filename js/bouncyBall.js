@@ -1,4 +1,4 @@
-class bouncyBall {
+class BouncyBall {
     constructor (pPosition, pRadius, pVelocity) {
         this.mPosition = pPosition;
         this. mRadius = pRadius;
