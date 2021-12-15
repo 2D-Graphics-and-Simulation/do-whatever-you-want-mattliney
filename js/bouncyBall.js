@@ -43,7 +43,8 @@ class BouncyBall {
         else if(this.mPosition.getY() - this.mRadius <= -pCanvas.height/2) {
             this.mVelocity = new Vector(this.mVelocity.getX(),-this.mVelocity.getY(),1);
         }
-        this.mPosition = this.mPosition.add((this.mVelocity.multiply(pDeltaTime)));
+
+        this.resultantForce(pDeltaTime);
     }
 
     checkSquareCollision(pSquare) {
@@ -57,8 +58,12 @@ class BouncyBall {
         }
     }
 
-    resultantForce() {
-        
+    resultantForce(pDeltaTime) {
+        //this.mPosition = this.mPosition.add(new Vector(0,50,1).multiply(pDeltaTime)); 
+
+        //this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(0.01));
+
+        this.mPosition = this.mPosition.add((this.mVelocity.multiply(pDeltaTime))); 
     }
 
     draw(pContext) {

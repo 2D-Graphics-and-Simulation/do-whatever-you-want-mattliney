@@ -105,8 +105,8 @@ function onLoad() {
         generateMen(10);
 
         debug = false;
-        circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
-        circle2 = new BouncyBall(new Vector(200,-200,1), 75, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(),randomNumber(),1));
+        circle2 = new BouncyBall(new Vector(200,-200,1), 75, new Vector(randomNumber(),randomNumber(),1));
         square = new Square(150, new Vector(0,0,1));
         lastTime = Date.now()
     }
@@ -143,11 +143,8 @@ function onLoad() {
         }
     }
 
-    function randomNumber(pMin, pMax) {
-        var random, rounded; 
-        random = Math.random()* (pMax * 2);
-        rounded = Math.round(random) + pMin;
-        return rounded;
+    function randomNumber() {
+        return Math.floor(Math.random() * 100);
     }
 
     function update(pDeltaTime) {

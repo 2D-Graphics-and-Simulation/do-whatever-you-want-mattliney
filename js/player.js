@@ -176,19 +176,12 @@ class player {
     calculateVelocity() {
         var acceleration, friction;
         friction = this.mFrictionCoefficient * this.mMass;
-        acceleration = this.mAccelerationRate.divide(this.mMass);
-        this.mVelocity = this.mVelocity.add(acceleration);
-        this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(friction));
-        this.mVelocity = this.mVelocity.limitTo(200);
-    }
+        acceleration = this.mAccelerationRate.divide(this.mMass); //acceleration is dependant on mass
+        this.mVelocity = this.mVelocity.add(acceleration); //acceleration is added to velocity
 
-    calculateFriction() {
-        var friction, speed, frictionX, frictionY;
-        speed = this.mVelocity.magnitude();
-        frictionX = -this.mFrictionCoefficient * this.mVelocity.getX() * speed;
-        frictionY = -this.mFrictionCoefficient * this.mVelocity.getY() * speed;
-        friction = new Vector(frictionX, frictionY, 0);
-        return friction;
+        this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(friction));
+
+        this.mVelocity = this.mVelocity.limitTo(200);
     }
 
     drawEye() {
