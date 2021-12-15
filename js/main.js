@@ -1,7 +1,7 @@
 function onLoad() {
     var mainCanvas, mainContext, origin, originMatrix, manPosition, men, i, negative, 
     rootNode, manAngle, thisTime, lastTime, deltaTime, user, string, background, mouseX, mouseY, visitor,
-    debug, circle, infectedCount, secondCanvas, secondContext, circle2, line1;
+    debug, circle, infectedCount, secondCanvas, secondContext, circle2;
     function initialiseCanvasContext() {
         mainCanvas = document.getElementById('mainCanvas');
         secondCanvas = document.getElementById('secondCanvas');
@@ -107,7 +107,6 @@ function onLoad() {
         debug = false;
         circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
         circle2 = new BouncyBall(new Vector(-200,150,1), 100, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
-        line1 = new Line(secondCanvas.width/5,secondCanvas.height/2,secondCanvas.width/2,secondCanvas.height/5);
         lastTime = Date.now()
     }
 
@@ -245,7 +244,6 @@ function onLoad() {
         circle.draw(secondContext);
         circle2.draw(secondContext);
         drawDistanceVector();
-        line1.draw(secondContext);
         
         mainContext.fillStyle = "#000000";
         mainContext.font = "20pt Helvetica";
