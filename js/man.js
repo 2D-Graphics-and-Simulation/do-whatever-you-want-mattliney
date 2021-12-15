@@ -128,11 +128,17 @@ class Man {
         this.setNode(translationNode);
     }
 
-    update(pDeltaTime, pGravity) {
-        var newPosition, newMatrix, newRotation;
+    update(pDeltaTime) {
+        var newPosition, newMatrix, newRotation, newScale;
         newPosition = this.getPosition().add((this.mVelocity.multiply(pDeltaTime)));
         this.setPosition(newPosition);
         newMatrix = Matrix.createTranslation(newPosition);
+
+        //uncomment this code to get the depth effect
+
+        // newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
+        // this.setScale(newScale);
+        // newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
 
         if(this.mNegative == true)
         {

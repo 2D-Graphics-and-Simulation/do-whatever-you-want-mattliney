@@ -149,10 +149,13 @@ class player {
         this.mCollision.setPosition(newPosition);
         newMatrix = Matrix.createTranslation(newPosition);
 
+        //uncomment this code to get the depth effect
+
         // newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
         // this.setScale(newScale);
         // newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
 
+        //this code handles the rotation to make the player/man look like he is swaying from side to side
         if(this.mNegative == true)
         {
             newRotation = this.getRotation() + (-this.mRotationRate * pDeltaTime);
@@ -179,9 +182,9 @@ class player {
         acceleration = this.mAccelerationRate.divide(this.mMass); //acceleration is dependant on mass
         this.mVelocity = this.mVelocity.add(acceleration); //acceleration is added to velocity
 
-        this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(friction));
+        this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(friction)); //friction is removed from the velocity
 
-        this.mVelocity = this.mVelocity.limitTo(200);
+        this.mVelocity = this.mVelocity.limitTo(200); //stops the player from gaining too much speed
     }
 
     drawEye() {
