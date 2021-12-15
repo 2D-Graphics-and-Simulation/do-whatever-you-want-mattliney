@@ -136,9 +136,9 @@ class Man {
 
         //uncomment this code to get the depth effect
 
-        // newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
-        // this.setScale(newScale);
-        // newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
+        newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
+        this.setScale(newScale);
+        newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
 
         if(this.mNegative == true)
         {

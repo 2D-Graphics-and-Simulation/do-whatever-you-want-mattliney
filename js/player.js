@@ -151,9 +151,9 @@ class player {
 
         //uncomment this code to get the depth effect
 
-        // newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
-        // this.setScale(newScale);
-        // newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
+        newScale = new Vector(0.01 * this.getPosition().getY(), 0.01 * this.getPosition().getY(), 1);
+        this.setScale(newScale);
+        newMatrix = newMatrix.multiply(Matrix.createScale(newScale));
 
         //this code handles the rotation to make the player/man look like he is swaying from side to side
         if(this.mNegative == true)

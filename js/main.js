@@ -111,6 +111,7 @@ function onLoad() {
         lastTime = Date.now()
     }
 
+    //creates the geometry used in the scene and adds it to the scene graph's root node
     function initialiseSceneGraph(pOriginMatrix) {
         var rootNode;
         rootNode = new TransformNode(pOriginMatrix);
@@ -121,6 +122,7 @@ function onLoad() {
         return rootNode;
     }
 
+    //creates x ammount of men, these are all added to the scene graph
     function generateMen(pAmmountOfMen) {
         men = [];
         negative = true;
@@ -143,10 +145,12 @@ function onLoad() {
         }
     }
 
+    //returns a random number for the bouncy ball movement
     function randomNumber() {
         return Math.floor(Math.random() * 500);
     }
 
+    //updates the scene using delta time for animation, this is where the collision checks are called also
     function update(pDeltaTime) {
         for(i = 0; i < men.length; i += 1) {
             men[i].update(pDeltaTime);
@@ -179,6 +183,7 @@ function onLoad() {
         circle2.update(pDeltaTime, secondCanvas);
     }
 
+    //first checks the players collision against other men and then checks the circle's collision on the other circle/ square
     function checkCollision() {
         var distX, distY, distance;
 
