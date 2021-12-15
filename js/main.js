@@ -197,19 +197,11 @@ function onLoad() {
             }
         }
 
-        distX = circle.getPosition().getX() - circle2.getPosition().getX();
-        distY = circle.getPosition().getY() - circle2.getPosition().getY();
-        distanceVector = new Vector(distX,distY,1);
-        distance = distanceVector.magnitude();
-        normalDistanceVector = distanceVector.normalise();
+        circle.checkCircleCollision(circle2);
+        circle2.checkCircleCollision(circle);
 
-        if(distance <= circle.getCollision().checkCollision(circle2.getCollision())) {
-            circle.normal(normalDistanceVector);
-            circle2.normal(normalDistanceVector);
-        }
-
-        circle.checkSquareCollision(square);
-        circle2.checkSquareCollision(square);
+        // circle.checkSquareCollision(square);
+        // circle2.checkSquareCollision(square);
     }
 
     function drawDistanceVector() {
