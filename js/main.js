@@ -144,7 +144,7 @@ function onLoad() {
     }
 
     function randomNumber() {
-        return Math.floor(Math.random() * 100);
+        return Math.floor(Math.random() * 500);
     }
 
     function update(pDeltaTime) {
@@ -180,7 +180,7 @@ function onLoad() {
     }
 
     function checkCollision() {
-        var distX, distY, distance, distanceVector, normalDistanceVector;
+        var distX, distY, distance;
 
         for(i = 0; i < men.length; i += 1) {
             distX = men[i].getPosition().getX() - user.getPosition().getX();
@@ -200,8 +200,8 @@ function onLoad() {
         circle.checkCircleCollision(circle2);
         circle2.checkCircleCollision(circle);
 
-        // circle.checkSquareCollision(square);
-        // circle2.checkSquareCollision(square);
+        circle.checkSquareCollision(square);
+        circle2.checkSquareCollision(square);
     }
 
     function drawDistanceVector() {

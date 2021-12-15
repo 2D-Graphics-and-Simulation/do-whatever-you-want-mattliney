@@ -48,27 +48,28 @@ class BouncyBall {
     }
 
     checkSquareCollision(pSquare) {
-        var distance, distanceMagnitude;
+        var distance, distanceMagnitude, distanceNormal;
         distance = this.mPosition.subtract(pSquare.getPosition());
         distanceMagnitude = distance.magnitude();
+        distanceNormal = distance.normalise();
 
         if(distanceMagnitude <= (pSquare.getSize()))
         {
-            this.setVelocity(new Vector(distance.getX(), distance.getY()))
+            this.normal(distanceNormal);
         }
     }
 
     checkCircleCollision(pCircle) {
-        var distX, distY, distanceVector, distance, normalDistanceVector;
+        var distX, distY, distanceVector, distance, distanceNormal;
         distX = this.getPosition().getX() - pCircle.getPosition().getX();
         distY = this.getPosition().getY() - pCircle.getPosition().getY();
         distanceVector = new Vector(distX,distY,1);
         distance = distanceVector.magnitude();
-        normalDistanceVector = distanceVector.normalise();
+        distanceNormal = distanceVector.normalise();
 
 
         if(distance <= this.mRadius + pCircle.getRadius()) {
-            this.normal(normalDistanceVector);
+            this.normal(distanceNormal);
         }
     }
 
