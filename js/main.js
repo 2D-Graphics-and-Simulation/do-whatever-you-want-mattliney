@@ -180,7 +180,7 @@ function onLoad() {
     }
 
     function checkCollision() {
-        var distX, distY, distance, distanceVector;
+        var distX, distY, distance, distanceVector, normalDistanceVector;
 
         for(i = 0; i < men.length; i += 1) {
             distX = men[i].getPosition().getX() - user.getPosition().getX();
@@ -201,10 +201,11 @@ function onLoad() {
         distY = circle.getPosition().getY() - circle2.getPosition().getY();
         distanceVector = new Vector(distX,distY,1);
         distance = distanceVector.magnitude();
+        normalDistanceVector = distanceVector.normalise();
 
         if(distance <= circle.getCollision().checkCollision(circle2.getCollision())) {
-            circle.setVelocity(new Vector(distanceVector.getX(), distanceVector.getY(), 1));
-            circle2.setVelocity(new Vector(-distanceVector.getX(), -distanceVector.getY(), 1));
+            circle.normal(normalDistanceVector);
+            circle2.normal(normalDistanceVector);
         }
 
         circle.checkSquareCollision(square);

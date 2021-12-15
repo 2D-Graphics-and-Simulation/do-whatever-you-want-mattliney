@@ -44,7 +44,7 @@ class BouncyBall {
             this.mVelocity = new Vector(this.mVelocity.getX(),-this.mVelocity.getY(),1);
         }
 
-        this.resultantForce(pDeltaTime);
+        this.mPosition = this.mPosition.add((this.mVelocity.multiply(pDeltaTime))); 
     }
 
     checkSquareCollision(pSquare) {
@@ -58,12 +58,19 @@ class BouncyBall {
         }
     }
 
-    resultantForce(pDeltaTime) {
-        //this.mPosition = this.mPosition.add(new Vector(0,50,1).multiply(pDeltaTime)); 
+    normal(pNormal) {
+        var newVelocity, twoN, negativeDot, combination;
+        // U = velocity, N = normal, V = result
+        // V = U + 2 * N * ( -N.U )
+        twoN = pNormal.multiply(2);
+        
+        negativeDot = (pNormal.dotProduct(this.mVelocity)) * -1;
 
-        //this.mVelocity = this.mVelocity.subtract(this.mVelocity.multiply(0.01));
+        combination = twoN.multiply(negativeDot);
 
-        this.mPosition = this.mPosition.add((this.mVelocity.multiply(pDeltaTime))); 
+        newVelocity = this.mVelocity.add(combination);
+
+        this.mVelocity = newVelocity;
     }
 
     draw(pContext) {
