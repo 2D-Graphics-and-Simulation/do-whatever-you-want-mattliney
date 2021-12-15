@@ -1,7 +1,7 @@
 function onLoad() {
     var mainCanvas, mainContext, origin, originMatrix, manPosition, men, i, negative, 
     rootNode, manAngle, thisTime, lastTime, deltaTime, user, string, background, mouseX, mouseY, visitor,
-    debug, circle, infectedCount, secondCanvas, secondContext, circle2;
+    debug, circle, infectedCount, secondCanvas, secondContext, circle2, square;
     function initialiseCanvasContext() {
         mainCanvas = document.getElementById('mainCanvas');
         secondCanvas = document.getElementById('secondCanvas');
@@ -107,6 +107,7 @@ function onLoad() {
         debug = false;
         circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
         circle2 = new BouncyBall(new Vector(-200,150,1), 100, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        square = new Square(150, new Vector(100,0,1));
         lastTime = Date.now()
     }
 
@@ -208,6 +209,9 @@ function onLoad() {
             circle.setVelocity(new Vector(distanceVector.getX(), distanceVector.getY(), 1));
             circle2.setVelocity(new Vector(-distanceVector.getX(), -distanceVector.getY(), 1));
         }
+
+        circle.checkSquareCollision(square);
+        circle2.checkSquareCollision(square);
     }
 
     function drawDistanceVector() {
@@ -243,6 +247,7 @@ function onLoad() {
         
         circle.draw(secondContext);
         circle2.draw(secondContext);
+        square.draw(secondContext);
         drawDistanceVector();
         
         mainContext.fillStyle = "#000000";
@@ -261,8 +266,6 @@ function onLoad() {
     animationLoop();
 
     //to do:
-    //make a box collision, maybe do the line
     //add some physics to the circles
-    //normal
 }
 window.addEventListener('load',onLoad,false);

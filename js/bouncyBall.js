@@ -46,6 +46,17 @@ class BouncyBall {
         this.mPosition = this.mPosition.add((this.mVelocity.multiply(pDeltaTime)));
     }
 
+    checkSquareCollision(pSquare) {
+        var distance, distanceMagnitude;
+        distance = this.mPosition.subtract(pSquare.getPosition());
+        distanceMagnitude = distance.magnitude();
+
+        if(distanceMagnitude <= (pSquare.getSize()))
+        {
+            this.setVelocity(new Vector(distance.getX(), distance.getY()))
+        }
+    }
+
     draw(pContext) {
         pContext.beginPath();
         pContext.fillStyle = "#ffffff";
