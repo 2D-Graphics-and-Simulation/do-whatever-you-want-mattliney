@@ -57,6 +57,10 @@ class BouncyBall {
         }
     }
 
+    resultantForce() {
+        
+    }
+
     draw(pContext) {
         pContext.beginPath();
         pContext.fillStyle = "#ffffff";

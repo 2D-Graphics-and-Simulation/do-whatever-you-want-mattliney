@@ -143,7 +143,7 @@ class player {
 
     update(pDeltaTime) {
         var newPosition, newMatrix, newRotation, newScale;
-        this.calculateVelocity(pDeltaTime);
+        this.calculateVelocity();
         newPosition = this.getPosition().add((this.mVelocity.multiply(pDeltaTime)));
         this.setPosition(newPosition);
         this.mCollision.setPosition(newPosition);

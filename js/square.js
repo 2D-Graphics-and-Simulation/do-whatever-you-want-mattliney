@@ -23,12 +23,11 @@ class Square {
         pContext.lineJoin = 'round';
 
         pContext.moveTo(position.getX() - (size/2), position.getY() - (size/2));
-        pContext.lineTo(position.getX() + (size/2), position.getY() - (size/2))
-        pContext.lineTo(position.getX() + (size/2), position.getY() + (size/2))
-        pContext.lineTo(position.getX() - (size/2), position.getY() + (size/2))
-        pContext.lineTo(position.getX() - (size/2), position.getY() - (size/2))
+        pContext.lineTo(position.getX() + (size/2), position.getY() - (size/2));
+        pContext.lineTo(position.getX() + (size/2), position.getY() + (size/2));
+        pContext.lineTo(position.getX() - (size/2), position.getY() + (size/2));
+        pContext.lineTo(position.getX() - (size/2), position.getY() - (size/2));
 
         pContext.stroke();
-        pContext.closePath();
     }
 }

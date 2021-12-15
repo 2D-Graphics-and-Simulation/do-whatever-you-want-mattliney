@@ -106,8 +106,8 @@ function onLoad() {
 
         debug = false;
         circle = new BouncyBall(new Vector(-200,-200,1), 50, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
-        circle2 = new BouncyBall(new Vector(-200,150,1), 100, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
-        square = new Square(150, new Vector(100,0,1));
+        circle2 = new BouncyBall(new Vector(200,-200,1), 75, new Vector(randomNumber(-200,200),randomNumber(-200,200),1));
+        square = new Square(150, new Vector(0,0,1));
         lastTime = Date.now()
     }
 
@@ -216,7 +216,7 @@ function onLoad() {
 
     function drawDistanceVector() {
         secondContext.beginPath();
-        secondContext.fillStyle = "#ffffff";
+        secondContext.strokeStyle = "#00ff00";
         secondContext.lineWidth = 5;
         secondContext.lineJoin = 'round';
 
@@ -224,6 +224,7 @@ function onLoad() {
         secondContext.lineTo(circle2.getPosition().getX(), circle2.getPosition().getY());
 
         secondContext.stroke();
+        secondContext.strokeStyle = "#000000";
     }
 
     function animationLoop() {
@@ -264,8 +265,5 @@ function onLoad() {
     }
     initialiseCanvasContext();
     animationLoop();
-
-    //to do:
-    //add some physics to the circles
 }
 window.addEventListener('load',onLoad,false);
