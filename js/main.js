@@ -259,5 +259,10 @@ function onLoad() {
     }
     initialiseCanvasContext();
     animationLoop();
+
+    //to do:
+    //make a box collision, maybe do the line
+    //add some physics to the circles
+    //normal
 }
 window.addEventListener('load',onLoad,false);
